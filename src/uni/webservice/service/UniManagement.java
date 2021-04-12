@@ -25,7 +25,7 @@ public interface UniManagement {
 	
 	@WebMethod(operationName = "removeSpeciality", action = "urn:RemoveSpeciality")
 	@WebResult(name = "id")
-	public int removeSpeciality(@WebParam(name = "speciality") Speciality s);
+	public int removeSpeciality(@WebParam(name = "speciality") int id_s);
 	
 	@WebMethod(operationName = "addUniversity", action = "urn:AddUniversity")
 	@WebResult(name = "id")
@@ -34,6 +34,11 @@ public interface UniManagement {
 	
 	@WebMethod(operationName = "removeUniversity", action = "urn:RemoveUniversity")
 	@WebResult(name = "id")
-	public int removeUniversity(@WebParam(name = "university") University s);
+	public int removeUniversity(@WebParam(name = "university") int id_s);
+	
+	
+	@WebMethod(operationName = "addSpecialitytoUni", action = "urn:AddSpecialitytoUni")
+	@WebResult(name = "id")
+	public int addSpecialitytoUni(@WebParam(name="speciality") Speciality s, @WebParam(name="university") University u);
 	
 }

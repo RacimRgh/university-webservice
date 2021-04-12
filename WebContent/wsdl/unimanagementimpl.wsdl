@@ -127,7 +127,7 @@
   </wsdl:binding>
   <wsdl:service name="UniManagementImplService">
     <wsdl:port name="UniManagementImplPort" binding="tns:UniManagementImplServiceSoapBinding">
-      <soap:address location="http://localhost:8080/UniversityManagement/services"/>
+      <soap:address location="http://localhost:8080/university-webservice/services"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

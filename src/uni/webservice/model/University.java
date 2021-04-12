@@ -3,6 +3,8 @@
  */
 package uni.webservice.model;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * @author racim
  *
@@ -11,29 +13,29 @@ package uni.webservice.model;
 public class University {
 	
 	/* Used for auto incrementing id */
-//	private static final AtomicInteger ID_FACTORY = new AtomicInteger(1);
-	private int id;
+	private static final AtomicInteger ID_FACTORY = new AtomicInteger(1);
+	private final int id;
 	private String name;
 	private double position_x;
 	private double position_y;
 	
-//	public University() {
-//		/* 
-//		 * Default constructor
-//		 * Takes no parameter, and incerements the ID
-//		 *  */
-//		super();
-////		id = ID_FACTORY.getAndIncrement();
-//	}
-//	
-//	
-//	public University(String name, double position_x, double position_y) {
-//		super();
-////		id = ID_FACTORY.getAndIncrement();
-//		this.name = name;
-//		this.position_x = position_x;
-//		this.position_y = position_y;
-//	}
+	public University() {
+		/* 
+		 * Default constructor
+		 * Takes no parameter, and incerements the ID
+		 *  */
+		super();
+		id = ID_FACTORY.getAndIncrement();
+	}
+	
+	
+	public University(String name, double position_x, double position_y) {
+		super();
+		id = ID_FACTORY.getAndIncrement();
+		this.name = name;
+		this.position_x = position_x;
+		this.position_y = position_y;
+	}
 	
 	public int getId() {
 		return id;

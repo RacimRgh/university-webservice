@@ -11,14 +11,7 @@
 <xs:element name="removeUniversityResponse" type="tns:removeUniversityResponse"/>
 <xs:complexType name="removeSpeciality">
     <xs:sequence>
-      <xs:element minOccurs="0" name="speciality" type="tns:speciality"/>
-    </xs:sequence>
-  </xs:complexType>
-<xs:complexType name="speciality">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="field" type="xs:string"/>
-      <xs:element minOccurs="0" name="year" type="xs:string"/>
-      <xs:element minOccurs="0" name="path" type="xs:string"/>
+      <xs:element name="speciality" type="xs:int"/>
     </xs:sequence>
   </xs:complexType>
 <xs:complexType name="removeSpecialityResponse">
@@ -30,6 +23,13 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="speciality" type="tns:speciality"/>
       <xs:element minOccurs="0" name="university" type="tns:university"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="speciality">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="field" type="xs:string"/>
+      <xs:element minOccurs="0" name="year" type="xs:string"/>
+      <xs:element minOccurs="0" name="path" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
 <xs:complexType name="university">
@@ -66,7 +66,7 @@
   </xs:complexType>
 <xs:complexType name="removeUniversity">
     <xs:sequence>
-      <xs:element minOccurs="0" name="university" type="tns:university"/>
+      <xs:element name="university" type="xs:int"/>
     </xs:sequence>
   </xs:complexType>
 <xs:complexType name="removeUniversityResponse">

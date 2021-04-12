@@ -3,7 +3,7 @@
  */
 package uni.webservice.model;
 
-//import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author racim
@@ -11,9 +11,9 @@ package uni.webservice.model;
  */
 public class Speciality {
 	/* Used for auto incrementing id */
-//	private static final AtomicInteger ID_FACTORY = new AtomicInteger(1);
+	private static final AtomicInteger ID_FACTORY = new AtomicInteger(1);
 	/* Speciality's id */
-	private int id;
+	private final int id;
 	/* Year: L1,L2,L3,M1,M2 */
 	private String year;
 	/* Field of the speciality (ex: computer science) */
@@ -22,23 +22,23 @@ public class Speciality {
 	private String path;
 	
 	
-//	public Speciality() {
-//		/* 
-//		 * Default constructor
-//		 * Takes no parameter, and incerements the ID
-//		 *  */
-//		super();
-////		id = ID_FACTORY.getAndIncrement();
-//	}
-//	
-//	public Speciality(String year, String field, String path) {
-//		super();
-////		id = ID_FACTORY.getAndIncrement();
-//		this.year = year;
-//		this.field = field;
-//		this.path = path;
-//	}
-//	
+	public Speciality() {
+		/* 
+		 * Default constructor
+		 * Takes no parameter, and incerements the ID
+		 *  */
+		super();
+		id = ID_FACTORY.getAndIncrement();
+	}
+	
+	public Speciality(String year, String field, String path) {
+		super();
+		id = ID_FACTORY.getAndIncrement();
+		this.year = year;
+		this.field = field;
+		this.path = path;
+	}
+	
 	public String getYear() {
 		return year;
 	}

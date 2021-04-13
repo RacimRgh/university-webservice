@@ -1,27 +1,20 @@
 /**
  * 
  */
-package uni.webservice.service;
+package uni.restwebservice.service;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import uni.restwebservice.data.Speciality;
+import uni.restwebservice.data.University;
+
 
 /**
  * @author racim
  *
  */
-
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.jws.WebService;
-
-import uni.webservice.model.Speciality;
-import uni.webservice.model.University;
-
-
-@WebService(targetNamespace = "http://service.webservice.uni/",
-	endpointInterface = "uni.webservice.service.UniManagement", 
-	portName = "UniManagementImplPort", 
-	serviceName = "UniManagementImplService")
-public class UniManagementImpl implements UniManagement {
+public class UniversityManagementRest {
 	
 	/**
 	 * unis is a {@link Map} collection that contains {@link Integer} as key 
@@ -48,17 +41,17 @@ public class UniManagementImpl implements UniManagement {
 	private static int id_u = 0;
 	private static int id_s = 0;
 	  
-	public int addSpeciality(Speciality s){
+	public Speciality addSpeciality(Speciality s){
 		/** 
 		 * @param
 		 * @return
 		 * */
 		if(s.getId() == 0) {
-			return -1;
+			return null;
 		}
 		++id_s;
 		specs.put(s.getId(), s);
-		return s.getId();
+		return s;
 	}
 	  
 	public int removeSpeciality(int id) {
@@ -74,18 +67,23 @@ public class UniManagementImpl implements UniManagement {
 	}
 	  
 	  
-	public int addUniversity(University u){
+	public University addUniversity(University u){
 		/** 
 		 * @param
 		 * @return
 		 * */
 		if(u.getId() == 0) {
-			return -1;
+			return null;
 		}
 		++id_u;
 		unis.put(u.getId(), u);
-		return u.getId();
+		return u;
 	}
+	
+	
+	public University getUniversity(int id) {
+	    return unis.get(id);
+	  }
 	  
 	public int removeUniversity(int id) {
 		/** 

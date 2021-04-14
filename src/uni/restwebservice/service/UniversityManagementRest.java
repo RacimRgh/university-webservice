@@ -29,43 +29,10 @@ public class UniversityManagementRest {
 	private static Map<Integer,Speciality> specs = new HashMap<Integer, Speciality>();
 	
 	/**
-	 *  is a {@link Map} collection that contains {@link Speciality} as key 
-	 * and {@link University} as value.
+	 *  is a {@link Map} collection that contains {@link Integer} as key, which is the id of the speciality 
+	 * and {@link Integer} as value, which is the id of the university
 	 */
-	private static Map<Speciality,University> fac = new HashMap<Speciality, University>();
-	
-	/**
-	 * id_u is the static id for the universities (increments on add)
-	 * id_s is the static id for the specialities (increments on add)
-	 */
-	private static int id_u = 0;
-	private static int id_s = 0;
-	  
-	public Speciality addSpeciality(Speciality s){
-		/** 
-		 * @param
-		 * @return
-		 * */
-		if(s.getId() == 0) {
-			return null;
-		}
-		++id_s;
-		specs.put(s.getId(), s);
-		return s;
-	}
-	  
-	public int removeSpeciality(int id) {
-		/** 
-		 * @param
-		 * @return
-		 * */
-		if(specs.get(id)==null) {
-			return -1;
-		}
-		specs.remove(id);
-		return id;
-	}
-	  
+	private static Map<Integer,Integer> fac = new HashMap<Integer, Integer>();
 	  
 	public University addUniversity(University u){
 		/** 
@@ -75,13 +42,16 @@ public class UniversityManagementRest {
 		if(u.getId() == 0) {
 			return null;
 		}
-		++id_u;
 		unis.put(u.getId(), u);
 		return u;
 	}
 	
 	
 	public University getUniversity(int id) {
+		/** 
+		 * @param
+		 * @return
+		 * */
 	    return unis.get(id);
 	  }
 	  
@@ -96,6 +66,43 @@ public class UniversityManagementRest {
 		unis.remove(id);
 		return id;
 	}
+	  
+	public Speciality addSpeciality(int id, Speciality s){
+		/** 
+		 * @param
+		 * @return
+		 * */
+		if(s.getId() == 0) {
+			return null;
+		}
+		specs.put(s.getId(), s);
+		fac.put(id, s.getId());
+		return s;
+	}
+	
+	public Speciality getSpecialityFromUniversity(int id, int id_s) {
+		/** 
+		 * @param
+		 * @return
+		 * */
+		if (!fac.containsKey(id_s) || !fac.containsValue(id))
+			return null;
+		
+	    return specs.get(id_s);
+	  }
+	  
+	public int removeSpeciality(int id_u, int id_s) {
+		/** 
+		 * @param
+		 * @return
+		 * */
+		if(specs.get(id_s)==null || unis.get(id_u) == null) {
+			return -1;
+		}
+		specs.remove(id_s);
+		fac.remove(id_s);
+		return id_s;
+	}
 	
 	public int addSpecialitytoUni(Speciality s, University u) {
 		/** 
@@ -109,16 +116,14 @@ public class UniversityManagementRest {
 		/* If the university isn't registered, we add it */
 		if(unis.get(u.getId()) == null) {
 			unis.put(u.getId(), u);
-			id_u++;
 		}
 		
 		/* If the speciality isn't registered, we add it */
 		if(specs.get(s.getId()) == null) {
 			specs.put(s.getId(), s);
-			id_s++;
 		}
 		/* Map the speciality to the university */
-		fac.put(s, u);
+		fac.put(s.getId(), u.getId());
 		return 1;
 	}
 }

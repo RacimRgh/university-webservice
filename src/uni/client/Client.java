@@ -11,6 +11,7 @@ import uni.restwebservice.data.University;
 
 public class Client {
 
+//  private static String webServiceUrl = "http://localhost:8080/UniversityManagement/api/university";
   private static String webServiceUrl = "http://localhost:8080/uni.restwebservice/api/university";
 
   public static void main(String[] args) {

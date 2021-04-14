@@ -3,6 +3,7 @@
  */
 package uni.restwebservice.resource;
 
+
 import java.net.URI;
 
 import javax.ws.rs.Consumes;
@@ -24,7 +25,7 @@ import uni.restwebservice.service.UniversityManagementRest;
  * @author racim
  *
  */
-@Path("university")
+@Path("/university")
 public class UniversityResource {
 	UniversityManagementRest service = new UniversityManagementRest();
 	

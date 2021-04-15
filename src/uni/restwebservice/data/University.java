@@ -18,6 +18,7 @@ public class University {
 	private static final AtomicInteger ID_FACTORY = new AtomicInteger(1);
 	private final int id;
 	private String name;
+	private String address;
 	private double position_x;
 	private double position_y;
 	
@@ -48,6 +49,13 @@ public class University {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 	public double getPosition_x() {
 		return position_x;
 	}
@@ -60,6 +68,11 @@ public class University {
 	public void setPosition_y(double position_y) {
 		this.position_y = position_y;
 	}
-	
-	
+
+
+	@Override
+	public String toString() {
+		return "University [id=" + id + ", name=" + name + ", address=" + address + ", position_x=" + position_x
+				+ ", position_y=" + position_y + "]";
+	}
 }

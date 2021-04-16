@@ -64,4 +64,10 @@ public class Speciality {
 	public void setpath(String path) {
 		this.path = path;
 	}
+
+	@Override
+	public String toString() {
+		return "Speciality [id=" + id + ", year=" + year + ", field=" + field + ", path=" + path + "]";
+	}
+	
 }

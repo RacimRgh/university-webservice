@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="UniManagementImplService" targetNamespace="http://service.webservice.uni/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://service.webservice.uni/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+  <import namespace="http://service.webservice.uni/" schemaLocation="unimanagementimpl_schema1.xsd"/>
+</schema>
+  </wsdl:types>
+  <wsdl:message name="addSpecialityResponse">
+    <wsdl:part name="parameters" element="tns:addSpecialityResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllUniversities">
+    <wsdl:part name="parameters" element="tns:getAllUniversities">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addSpecialitytoUni">
+    <wsdl:part name="parameters" element="tns:addSpecialitytoUni">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSpecialitytoUni">
+    <wsdl:part name="parameters" element="tns:getSpecialitytoUni">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addUniversityResponse">
+    <wsdl:part name="parameters" element="tns:addUniversityResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addUniversity">
+    <wsdl:part name="parameters" element="tns:addUniversity">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeSpecialityResponse">
+    <wsdl:part name="parameters" element="tns:removeSpecialityResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeUniversityResponse">
+    <wsdl:part name="parameters" element="tns:removeUniversityResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllUniversitiesResponse">
+    <wsdl:part name="parameters" element="tns:getAllUniversitiesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSpeciality">
+    <wsdl:part name="parameters" element="tns:getSpeciality">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeSpeciality">
+    <wsdl:part name="parameters" element="tns:removeSpeciality">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUniversity">
+    <wsdl:part name="parameters" element="tns:getUniversity">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSpecialitytoUniResponse">
+    <wsdl:part name="parameters" element="tns:getSpecialitytoUniResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSpecialitiesFromUniResponse">
+    <wsdl:part name="parameters" element="tns:getSpecialitiesFromUniResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllSpecialities">
+    <wsdl:part name="parameters" element="tns:getAllSpecialities">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeUniversity">
+    <wsdl:part name="parameters" element="tns:removeUniversity">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSpecialityResponse">
+    <wsdl:part name="parameters" element="tns:getSpecialityResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUniversityResponse">
+    <wsdl:part name="parameters" element="tns:getUniversityResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllSpecialitiesResponse">
+    <wsdl:part name="parameters" element="tns:getAllSpecialitiesResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addSpecialitytoUniResponse">
+    <wsdl:part name="parameters" element="tns:addSpecialitytoUniResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSpecialitiesFromUni">
+    <wsdl:part name="parameters" element="tns:getSpecialitiesFromUni">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addSpeciality">
+    <wsdl:part name="parameters" element="tns:addSpeciality">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="UniManagement">
+    <wsdl:operation name="getSpeciality">
+      <wsdl:input name="getSpeciality" message="tns:getSpeciality">
+    </wsdl:input>
+      <wsdl:output name="getSpecialityResponse" message="tns:getSpecialityResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeSpeciality">
+      <wsdl:input name="removeSpeciality" message="tns:removeSpeciality">
+    </wsdl:input>
+      <wsdl:output name="removeSpecialityResponse" message="tns:removeSpecialityResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUniversity">
+      <wsdl:input name="getUniversity" message="tns:getUniversity">
+    </wsdl:input>
+      <wsdl:output name="getUniversityResponse" message="tns:getUniversityResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllSpecialities">
+      <wsdl:input name="getAllSpecialities" message="tns:getAllSpecialities">
+    </wsdl:input>
+      <wsdl:output name="getAllSpecialitiesResponse" message="tns:getAllSpecialitiesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeUniversity">
+      <wsdl:input name="removeUniversity" message="tns:removeUniversity">
+    </wsdl:input>
+      <wsdl:output name="removeUniversityResponse" message="tns:removeUniversityResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllUniversities">
+      <wsdl:input name="getAllUniversities" message="tns:getAllUniversities">
+    </wsdl:input>
+      <wsdl:output name="getAllUniversitiesResponse" message="tns:getAllUniversitiesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addSpecialitytoUni">
+      <wsdl:input name="addSpecialitytoUni" message="tns:addSpecialitytoUni">
+    </wsdl:input>
+      <wsdl:output name="addSpecialitytoUniResponse" message="tns:addSpecialitytoUniResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSpecialitytoUni">
+      <wsdl:input name="getSpecialitytoUni" message="tns:getSpecialitytoUni">
+    </wsdl:input>
+      <wsdl:output name="getSpecialitytoUniResponse" message="tns:getSpecialitytoUniResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addUniversity">
+      <wsdl:input name="addUniversity" message="tns:addUniversity">
+    </wsdl:input>
+      <wsdl:output name="addUniversityResponse" message="tns:addUniversityResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSpecialitiesFromUni">
+      <wsdl:input name="getSpecialitiesFromUni" message="tns:getSpecialitiesFromUni">
+    </wsdl:input>
+      <wsdl:output name="getSpecialitiesFromUniResponse" message="tns:getSpecialitiesFromUniResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addSpeciality">
+      <wsdl:input name="addSpeciality" message="tns:addSpeciality">
+    </wsdl:input>
+      <wsdl:output name="addSpecialityResponse" message="tns:addSpecialityResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="UniManagementImplServiceSoapBinding" type="tns:UniManagement">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getSpeciality">
+      <soap:operation soapAction="urn:GetSpeciality" style="document"/>
+      <wsdl:input name="getSpeciality">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getSpecialityResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeSpeciality">
+      <soap:operation soapAction="urn:RemoveSpeciality" style="document"/>
+      <wsdl:input name="removeSpeciality">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeSpecialityResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUniversity">
+      <soap:operation soapAction="urn:GetUniversity" style="document"/>
+      <wsdl:input name="getUniversity">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUniversityResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllSpecialities">
+      <soap:operation soapAction="urn:GetAllSpecialities" style="document"/>
+      <wsdl:input name="getAllSpecialities">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllSpecialitiesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removeUniversity">
+      <soap:operation soapAction="urn:RemoveUniversity" style="document"/>
+      <wsdl:input name="removeUniversity">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeUniversityResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllUniversities">
+      <soap:operation soapAction="urn:GetAllUniversities" style="document"/>
+      <wsdl:input name="getAllUniversities">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllUniversitiesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addSpecialitytoUni">
+      <soap:operation soapAction="urn:AddSpecialitytoUni" style="document"/>
+      <wsdl:input name="addSpecialitytoUni">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addSpecialitytoUniResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSpecialitytoUni">
+      <soap:operation soapAction="urn:GetSpecialitytoUni" style="document"/>
+      <wsdl:input name="getSpecialitytoUni">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getSpecialitytoUniResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addUniversity">
+      <soap:operation soapAction="urn:AddUniversity" style="document"/>
+      <wsdl:input name="addUniversity">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addUniversityResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSpecialitiesFromUni">
+      <soap:operation soapAction="urn:GetSpecialitiesFromUni" style="document"/>
+      <wsdl:input name="getSpecialitiesFromUni">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getSpecialitiesFromUniResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addSpeciality">
+      <soap:operation soapAction="urn:AddSpeciality" style="document"/>
+      <wsdl:input name="addSpeciality">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addSpecialityResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UniManagementImplService">
+    <wsdl:port name="UniManagementImplPort" binding="tns:UniManagementImplServiceSoapBinding">
+      <soap:address location="http://localhost:8080/UniversityManagement/services"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

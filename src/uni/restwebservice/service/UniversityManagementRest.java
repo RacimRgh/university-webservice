@@ -81,7 +81,7 @@ public class UniversityManagementRest {
 		fac.put(s.getId(), id); // we map the speciality id to a university id
 		return s;
 	}
-	
+
 	public Speciality getSpeciality(int id) {
 		/**
 		 * @param
@@ -89,7 +89,7 @@ public class UniversityManagementRest {
 		 */
 		return specs.get(id);
 	}
-	
+
 	public Speciality getSpecialityFromUniversity(int id, int id_s) {
 		/**
 		 * @param
@@ -183,7 +183,7 @@ public class UniversityManagementRest {
 			}
 		}
 		Speciality[] s = new Speciality[i];
-		for(int j = 0; j < sl.size(); j++) {
+		for (int j = 0; j < sl.size(); j++) {
 			s[j] = sl.get(j);
 		}
 		return s;

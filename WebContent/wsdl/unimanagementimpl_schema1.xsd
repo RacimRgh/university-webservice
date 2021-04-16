@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?><xs:schema xmlns:tns="http://service.webservice.uni/" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="http://service.webservice.uni/" version="1.0">
+<xs:element name="addSpeciality" type="tns:addSpeciality"/>
+<xs:element name="addSpecialityResponse" type="tns:addSpecialityResponse"/>
+<xs:element name="addSpecialitytoUni" type="tns:addSpecialitytoUni"/>
+<xs:element name="addSpecialitytoUniResponse" type="tns:addSpecialitytoUniResponse"/>
+<xs:element name="addUniversity" type="tns:addUniversity"/>
+<xs:element name="addUniversityResponse" type="tns:addUniversityResponse"/>
+<xs:element name="getAllSpecialities" type="tns:getAllSpecialities"/>
+<xs:element name="getAllSpecialitiesResponse" type="tns:getAllSpecialitiesResponse"/>
+<xs:element name="getAllUniversities" type="tns:getAllUniversities"/>
+<xs:element name="getAllUniversitiesResponse" type="tns:getAllUniversitiesResponse"/>
+<xs:element name="getSpecialitiesFromUni" type="tns:getSpecialitiesFromUni"/>
+<xs:element name="getSpecialitiesFromUniResponse" type="tns:getSpecialitiesFromUniResponse"/>
+<xs:element name="getSpeciality" type="tns:getSpeciality"/>
+<xs:element name="getSpecialityResponse" type="tns:getSpecialityResponse"/>
+<xs:element name="getSpecialitytoUni" type="tns:getSpecialitytoUni"/>
+<xs:element name="getSpecialitytoUniResponse" type="tns:getSpecialitytoUniResponse"/>
+<xs:element name="getUniversity" type="tns:getUniversity"/>
+<xs:element name="getUniversityResponse" type="tns:getUniversityResponse"/>
+<xs:element name="removeSpeciality" type="tns:removeSpeciality"/>
+<xs:element name="removeSpecialityResponse" type="tns:removeSpecialityResponse"/>
+<xs:element name="removeUniversity" type="tns:removeUniversity"/>
+<xs:element name="removeUniversityResponse" type="tns:removeUniversityResponse"/>
+<xs:complexType name="getSpeciality">
+    <xs:sequence>
+      <xs:element name="id" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getSpecialityResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="university" type="tns:speciality"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="speciality">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="field" type="xs:string"/>
+      <xs:element minOccurs="0" name="year" type="xs:string"/>
+      <xs:element minOccurs="0" name="path" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="removeSpeciality">
+    <xs:sequence>
+      <xs:element name="speciality" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="removeSpecialityResponse">
+    <xs:sequence>
+      <xs:element name="id" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getUniversity">
+    <xs:sequence>
+      <xs:element name="id" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getUniversityResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="university" type="tns:university"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="university">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="address" type="xs:string"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element name="position_x" type="xs:double"/>
+      <xs:element name="position_y" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getAllSpecialities">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="getAllSpecialitiesResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="specialities" type="tns:speciality"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="removeUniversity">
+    <xs:sequence>
+      <xs:element name="university" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="removeUniversityResponse">
+    <xs:sequence>
+      <xs:element name="id" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getAllUniversities">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="getAllUniversitiesResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="universities" type="tns:university"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="addSpecialitytoUni">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="speciality" type="tns:speciality"/>
+      <xs:element minOccurs="0" name="university" type="tns:university"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="addSpecialitytoUniResponse">
+    <xs:sequence>
+      <xs:element name="id" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getSpecialitytoUni">
+    <xs:sequence>
+      <xs:element name="id_u" type="xs:int"/>
+      <xs:element name="id_s" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getSpecialitytoUniResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="tns:speciality"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="addUniversity">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="university" type="tns:university"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="addUniversityResponse">
+    <xs:sequence>
+      <xs:element name="id" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getSpecialitiesFromUni">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getSpecialitiesFromUniResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="specialities" type="tns:speciality"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="addSpeciality">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="speciality" type="tns:speciality"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="addSpecialityResponse">
+    <xs:sequence>
+      <xs:element name="id" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

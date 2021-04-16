@@ -22,19 +22,13 @@ import uni.restwebservice.data.Speciality;
 import uni.restwebservice.data.University;
 
 public class Client {
-	private static final String menu ="\n****************************************\n"
-			+ "****************************************\n"
-			+ "1- Add a university.\n"
-			+ "2- Map a speciality to a university.\n"
-			+ "3- Get a university.\n"
-			+ "4- Get a speciality.\n"
-			+ "5- Get all universities.\n"
-			+ "6- Get all specialities.\n"
-			+ "7- Get all specialities from a given university.\n"
-			+ "10- Stop.\n"
-			+ "Your choice: ";
+	private static final String menu = "\n****************************************\n"
+			+ "****************************************\n" + "1- Add a university.\n"
+			+ "2- Map a speciality to a university.\n" + "3- Get a university.\n" + "4- Get a speciality.\n"
+			+ "5- Get all universities.\n" + "6- Get all specialities.\n"
+			+ "7- Get all specialities from a given university.\n" + "10- Stop.\n" + "Your choice: ";
 
-	private static final String webServiceUrl = "http://localhost:8080/UniversityManagement/api/university";
+	private static final String webServiceUrl = "http://localhost:8080/UniversityManagement/api";
 //  private static final String webServiceUrl = "http://localhost:8080/uni.restwebservice/api/university";
 	private static final String osmUrl = "https://nominatim.openstreetmap.org/";
 	private static final String req = "search?q=";
@@ -42,67 +36,82 @@ public class Client {
 
 	public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException {
 		Scanner in = new Scanner(System.in);
-		
-		int cergy=0, descartes=0, lyon=0;
+
+		int cergy = 0, descartes = 0, lyon = 0, uni = 0;
 		String choice = "0";
 		do {
 			System.out.println(menu);
 			choice = in.nextLine();
-			switch(choice) {
-			case "1":
-			{
-				cergy = add("Universite de Cergy Pontoise", 0, 0);
-				descartes = add("Universite de Paris descartes", 1, 1);
-				lyon = add("universite de Lyon 1", 2, 2);
+			switch (choice) {
+			case "1": {
+//				System.out.println("\n****Name of the university: ");
+//				String name = in.nextLine();
+//				uni = add(name);
+				
+				/*********************************************************************************
+				**************************For testing only****************************************/
+				cergy = add("Universite de Cergy Pontoise");
+				descartes = add("Universite de Paris descartes");
+				lyon = add("universite de Lyon 1");
+				/*********************************************************************************/
 				break;
 			}
-			case "2":
-			{
+			case "2": {
+//				System.out.println("\n****University id: ");
+//				int id_u = in.nextInt();
+//				System.out.println("\n****Speciality field: ");
+//				System.out.println();
+//				String field = in.nextLine(); 
+//				System.out.println("\n****Speciality year (L1,L2,L3,M1,M2): ");
+//				String year = in.nextLine(); 
+//				System.out.println("\n****Speciality path: ");
+//				String path = in.nextLine();
+//				addSpeciality(id_u, year, field, path);
+				/*********************************************************************************
+				**************************For testing only****************************************/
 				addSpeciality(cergy, "L3", "Informatique", "Informatique");
 				addSpeciality(cergy, "M1", "Informatique", "IA");
 				addSpeciality(descartes, "M1", "Informatique", "Data Science");
 				addSpeciality(lyon, "L3", "Biologie", "Biologie");
+				/*********************************************************************************/
 				break;
 			}
-			case "3":
-			{
+			case "3": {
+//				System.out.println("\n****Getting university\n****University ID: ");
+//				int id_u = in.nextInt();
+//				get(id_u);
 				get(cergy);
 				get(descartes);
 				break;
 			}
-			case "4":
-			{
+			case "4": {
 				break;
 			}
-			case "5":
-			{
+			case "5": {
 				getAll();
 				break;
 			}
-			case "6":
-			{
+			case "6": {
+				getAllSpecialities();
 				break;
 			}
-			case "7":
-			{
+			case "7": {
 				getSpecialitiesFromUni(1);
 				break;
 			}
-			case "8":
-			{
+			case "8": {
 				break;
 			}
-			case "10":
-			{
+			case "10": {
 				System.exit(1);
 				break;
 			}
-			default:{
+			default: {
 				System.out.println("Invalid choice, please repeat.\n");
 				break;
 			}
 			}
-		}while(choice!="10");
+		} while (choice != "10");
 	}
 
 	private static University getAddress(University s) throws IOException, ParserConfigurationException, SAXException {
@@ -140,15 +149,15 @@ public class Client {
 		return s;
 	}
 
-	private static Integer add(String name, double x, double y)
+	private static Integer add(String name)
 			throws IOException, ParserConfigurationException, SAXException {
 		/**
 		 * @param
 		 * @return
 		 */
 		System.out.print("Adding " + name + "... ");
-		WebClient c = WebClient.create(webServiceUrl);
-		University s = new University(name, x, y);
+		WebClient c = WebClient.create(webServiceUrl).path("university");
+		University s = new University(name, 0, 0);
 		s = getAddress(s);
 		Response r = c.post(s);
 		if (r.getStatus() == 400) {
@@ -166,7 +175,7 @@ public class Client {
 		 * @return
 		 */
 		System.out.print("Getting " + id + "... ");
-		WebClient c = WebClient.create(webServiceUrl).path(id);
+		WebClient c = WebClient.create(webServiceUrl).path("university/").path(id);
 		University s = null;
 		try {
 			s = c.get(University.class);
@@ -183,7 +192,7 @@ public class Client {
 		 * @return
 		 */
 		System.out.println("Getting all...");
-		WebClient c = WebClient.create(webServiceUrl);
+		WebClient c = WebClient.create(webServiceUrl).path("university");
 		ArrayList<University> l = (ArrayList<University>) c.getCollection(University.class);
 		for (University s : l) {
 			System.out.println(s.toString());
@@ -191,7 +200,7 @@ public class Client {
 		System.out.println("OK.");
 		return l.toArray(new University[l.size()]);
 	}
-	
+
 	private static Integer addSpeciality(int id_u, String year, String field, String path)
 			throws IOException, ParserConfigurationException, SAXException {
 		/**
@@ -199,7 +208,7 @@ public class Client {
 		 * @return
 		 */
 		System.out.print("Adding " + field + "... ");
-		WebClient c = WebClient.create(webServiceUrl).path(id_u).path("/speciality");
+		WebClient c = WebClient.create(webServiceUrl).path("university/").path(id_u).path("/speciality");
 		Speciality s = new Speciality(year, field, path);
 		Response r = c.post(s);
 		if (r.getStatus() == 400) {
@@ -210,14 +219,29 @@ public class Client {
 		System.out.println("OK.");
 		return Integer.parseInt(uri.substring(uri.lastIndexOf('/') + 1));
 	}
-	
+
 	private static Speciality[] getSpecialitiesFromUni(Integer id) {
 		/**
 		 * @param
 		 * @return
 		 */
 		System.out.print("Getting specialities from: " + id + "... ");
-		WebClient c = WebClient.create(webServiceUrl).path(id).path("/speciality");	
+		WebClient c = WebClient.create(webServiceUrl).path("university/").path(id).path("/speciality");
+		ArrayList<Speciality> l = (ArrayList<Speciality>) c.getCollection(Speciality.class);
+		for (Speciality s : l) {
+			System.out.println(s.toString());
+		}
+		System.out.println("OK.");
+		return l.toArray(new Speciality[l.size()]);
+	}
+
+	public static Speciality[] getAllSpecialities() {
+		/**
+		 * @param
+		 * @return
+		 */
+		System.out.println("Getting all...");
+		WebClient c = WebClient.create(webServiceUrl).path("speciality");
 		ArrayList<Speciality> l = (ArrayList<Speciality>) c.getCollection(Speciality.class);
 		for (Speciality s : l) {
 			System.out.println(s.toString());

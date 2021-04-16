@@ -3,6 +3,8 @@
  */
 package uni.webservice.service;
 
+import java.util.ArrayList;
+
 /**
  * @author racim
  *
@@ -10,6 +12,7 @@ package uni.webservice.service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import javax.jws.WebService;
 
@@ -32,42 +35,11 @@ public class UniManagementImpl implements UniManagement {
 	private static Map<Integer, Speciality> specs = new HashMap<Integer, Speciality>();
 
 	/**
-	 * is a {@link Map} collection that contains {@link Speciality} as key and
-	 * {@link University} as value.
+	 * is a {@link Map} collection that contains {@link Integer} as key, which is
+	 * the id of the speciality and {@link Integer} as value, which is the id of the
+	 * university
 	 */
-	private static Map<Speciality, University> fac = new HashMap<Speciality, University>();
-
-	/**
-	 * id_u is the static id for the universities (increments on add) id_s is the
-	 * static id for the specialities (increments on add)
-	 */
-	private static int id_u = 0;
-	private static int id_s = 0;
-
-	public int addSpeciality(Speciality s) {
-		/**
-		 * @param
-		 * @return
-		 */
-		if (s.getId() == 0) {
-			return -1;
-		}
-		++id_s;
-		specs.put(s.getId(), s);
-		return s.getId();
-	}
-
-	public int removeSpeciality(int id) {
-		/**
-		 * @param
-		 * @return
-		 */
-		if (specs.get(id) == null) {
-			return -1;
-		}
-		specs.remove(id);
-		return id;
-	}
+	private static Map<Integer, Integer> fac = new HashMap<Integer, Integer>();
 
 	public int addUniversity(University u) {
 		/**
@@ -75,11 +47,18 @@ public class UniManagementImpl implements UniManagement {
 		 * @return
 		 */
 		if (u.getId() == 0) {
-			return -1;
+			return 0;
 		}
-		++id_u;
 		unis.put(u.getId(), u);
 		return u.getId();
+	}
+
+	public University getUniversity(int id) {
+		/**
+		 * @param
+		 * @return
+		 */
+		return unis.get(id);
 	}
 
 	public int removeUniversity(int id) {
@@ -94,6 +73,52 @@ public class UniManagementImpl implements UniManagement {
 		return id;
 	}
 
+	public int addSpeciality(int id, Speciality s) {
+		/**
+		 * @param id: id of the university to add the speciality to
+		 * @param s:  Speciality to add
+		 * @return The added speciality on success, null on failure
+		 */
+		if (s.getId() == 0) {
+			return 0;
+		}
+		specs.put(s.getId(), s); // we add the speciality to the hashmap
+		fac.put(s.getId(), id); // we map the speciality id to a university id
+		return s.getId();
+	}
+
+	public Speciality getSpeciality(int id) {
+		/**
+		 * @param
+		 * @return
+		 */
+		return specs.get(id);
+	}
+
+	public Speciality getSpecialityFromUniversity(int id, int id_s) {
+		/**
+		 * @param
+		 * @return
+		 */
+		if (!fac.containsKey(id_s) || !fac.containsValue(id))
+			return null;
+
+		return specs.get(id_s);
+	}
+
+	public int removeSpeciality(int id_u, int id_s) {
+		/**
+		 * @param
+		 * @return
+		 */
+		if (specs.get(id_s) == null || unis.get(id_u) == null) {
+			return -1;
+		}
+		specs.remove(id_s);
+		fac.remove(id_s);
+		return id_s;
+	}
+
 	public int addSpecialitytoUni(Speciality s, University u) {
 		/**
 		 * @param
@@ -106,16 +131,66 @@ public class UniManagementImpl implements UniManagement {
 		/* If the university isn't registered, we add it */
 		if (unis.get(u.getId()) == null) {
 			unis.put(u.getId(), u);
-			id_u++;
 		}
 
 		/* If the speciality isn't registered, we add it */
 		if (specs.get(s.getId()) == null) {
 			specs.put(s.getId(), s);
-			id_s++;
 		}
 		/* Map the speciality to the university */
-		fac.put(s, u);
+		fac.put(s.getId(), u.getId());
 		return 1;
+	}
+
+	public University[] getAllUniversities() {
+		/**
+		 * @param
+		 * @return
+		 */
+		Set<Integer> id_u = unis.keySet();
+		University[] u = new University[id_u.size()];
+		int i = 0;
+		for (Integer id : id_u) {
+			u[i] = unis.get(id);
+			i++;
+		}
+		return u;
+	}
+
+	public Speciality[] getAllSpecialities() {
+		/**
+		 * @param
+		 * @return
+		 */
+		Set<Integer> id_s = specs.keySet();
+		Speciality[] s = new Speciality[id_s.size()];
+		int i = 0;
+		for (Integer id : id_s) {
+			s[i] = specs.get(id);
+			i++;
+		}
+		return s;
+	}
+
+	public Speciality[] getSpecialitiesFromUni(int id_u) {
+		/**
+		 * @param
+		 * @return
+		 */
+		ArrayList<Speciality> sl = new ArrayList<Speciality>();
+		int i = 0;
+		for (Map.Entry<Integer, Integer> entry : fac.entrySet()) {
+			System.out.println(entry.getValue());
+			if (entry.getValue().equals(id_u)) {
+//				System.out.println(specs.get(entry.getKey()));
+				sl.add(specs.get(entry.getKey()));
+				i++;
+			}
+		}
+		Speciality[] s = new Speciality[i];
+		for (int j = 0; j < sl.size(); j++) {
+			s[j] = sl.get(j);
+		}
+		return s;
 	}
 }

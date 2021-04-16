@@ -41,17 +41,17 @@ The client show a console menu to the user and allows him to do one of the follo
 ![menu](Screenshots/menu.png)
 
 - Adds a university.
-  ![add_uni](Screenshots/add_uni.png)
+![add_uni](Screenshots/add_uni.png)
 - Maps a speciality to a university.
-  ![add_spe](Screenshots/add_spe.png)
+![add_spe](Screenshots/add_spe.png)
 - Gets a university.
-  ![get_uni](Screenshots/get_uni.png)
+![get_uni](Screenshots/get_uni.png)
 - Gets all universities.
-  ![get_all_uni](Screenshots/get_all_uni.png)
+![get_all_uni](Screenshots/get_all_uni.png)
 - Get all specialities.
-  ![get_all_spe](Screenshots/get_all_spe.png)
+![get_all_spe](Screenshots/get_all_spe.png)
 - Get address from a name.
-  ![get_address](Screenshots/get_address.png)
+![get_address](Screenshots/get_address.png)
 - Stops.
 
 ## Demonstration
@@ -59,10 +59,10 @@ The client show a console menu to the user and allows him to do one of the follo
 To show you the functionnality of our implementation we've chosen to show you how we can add universities thanks Postman with these screenshots :
 
 - Get address from a name.
-  ![get_address_postman](Screenshots/get_address_postman.png)
+![get_address_postman](Screenshots/get_address_postman.png)
 - Add university SOAP
-  ![add_uni_soap_postman](Screenshots/add_uni_soap.png)
+![add_uni_soap_postman](Screenshots/add_uni_soap.png)
 - Add university REST
-  ![add_uni_rest_postman](Screenshots/add_uni_postman_soap.png)
+![add_uni_rest_postman](Screenshots/add_uni_postman_soap.png)
 - Get university REST
-  ![get_uni_rest_postman](Screenshots/get_uni_postman.png)
+![get_uni_rest_postman](Screenshots/get_uni_postman.png)

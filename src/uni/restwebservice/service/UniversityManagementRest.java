@@ -38,8 +38,10 @@ public class UniversityManagementRest {
 
 	public University addUniversity(University u) {
 		/**
-		 * @param
-		 * @return
+		 * This function add a university to the database using POST, and also call the function getAddress
+		 * to retrieve the correct coordinates
+		 * @param name: name of the university to add
+		 * @return null on failure, the added university on success
 		 */
 		if (u.getId() == 0) {
 			return null;
@@ -50,16 +52,19 @@ public class UniversityManagementRest {
 
 	public University getUniversity(int id) {
 		/**
-		 * @param
-		 * @return
+		 * Function to get a university by it's id
+		 * 
+		 * @param id: Id of the university
+		 * @return The university
 		 */
 		return unis.get(id);
 	}
 
 	public int removeUniversity(int id) {
 		/**
-		 * @param
-		 * @return
+		 * Function to delete a university by it's id
+		 * @param id: Id of the university
+		 * @return http request's response
 		 */
 		if (unis.get(id) == null) {
 			return -1;
@@ -84,16 +89,19 @@ public class UniversityManagementRest {
 
 	public Speciality getSpeciality(int id) {
 		/**
-		 * @param
-		 * @return
+		 * Get a speciality given it's id
+		 * @param id: id of the speciality
+		 * @return A speciality
 		 */
 		return specs.get(id);
 	}
 
 	public Speciality getSpecialityFromUniversity(int id, int id_s) {
 		/**
-		 * @param
-		 * @return
+		 * Get a specific speciality from a university
+		 * 
+		 * @param id:   Id of the university to get specialities from
+		 * @param id_s: id of the speciality
 		 */
 		if (!fac.containsKey(id_s) || !fac.containsValue(id))
 			return null;
@@ -103,8 +111,10 @@ public class UniversityManagementRest {
 
 	public int removeSpeciality(int id_u, int id_s) {
 		/**
-		 * @param
-		 * @return
+		 * Function to delete a speciality by it's id from a specific university
+		 * @param id_u: Id of the university
+		 * @param id_s: Id of the university
+		 * @return -1 on failure, the removed id on success
 		 */
 		if (specs.get(id_s) == null || unis.get(id_u) == null) {
 			return -1;
@@ -116,8 +126,10 @@ public class UniversityManagementRest {
 
 	public int addSpecialitytoUni(Speciality s, University u) {
 		/**
-		 * @param
-		 * @return
+		 * Function to add a speciality to the database and map it to a university given it's id
+		 * 
+		 * @param s: the university to map to
+		 * @param u:  Speciality object to be added
 		 */
 		if (s.getId() == 0 || u.getId() == 0) {
 			return -1;
@@ -139,8 +151,7 @@ public class UniversityManagementRest {
 
 	public University[] getAllUniversities() {
 		/**
-		 * @param
-		 * @return
+		 * Function to get all the universities on the database
 		 */
 		Set<Integer> id_u = unis.keySet();
 		University[] u = new University[id_u.size()];
@@ -154,8 +165,7 @@ public class UniversityManagementRest {
 
 	public Speciality[] getAllSpecialities() {
 		/**
-		 * @param
-		 * @return
+		 * Get all specialities from all universities
 		 */
 		Set<Integer> id_s = specs.keySet();
 		Speciality[] s = new Speciality[id_s.size()];
@@ -169,8 +179,9 @@ public class UniversityManagementRest {
 
 	public Speciality[] getSpecialitiesFromUni(int id_u) {
 		/**
-		 * @param
-		 * @return
+		 * Get all the specialities from a given university
+		 * 
+		 * @param id_u: Id of the university to get specialities from
 		 */
 		ArrayList<Speciality> sl = new ArrayList<Speciality>();
 		int i = 0;

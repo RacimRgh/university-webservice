@@ -6,7 +6,7 @@ package uni.webservice.model;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * @author racim
+ * Description of a University for the SOAP webservice
  *
  */
 
@@ -14,12 +14,16 @@ public class University {
 
 	/* Used for auto incrementing id */
 	private static final AtomicInteger ID_FACTORY = new AtomicInteger(1);
+	/* id of the university, auto generated */
 	private final int id;
+	/* short name of the university */
 	private String name;
+	/* full address of the university, retrived from OSM API */
 	private String address;
+	/* Geographical Latitude */
 	private double position_x;
+	/* Geographical longitude */
 	private double position_y;
-
 	public University() {
 		/*
 		 * Default constructor Takes no parameter, and incerements the ID
@@ -39,7 +43,6 @@ public class University {
 	public int getId() {
 		return id;
 	}
-	
 
 	public String getAddress() {
 		return address;
@@ -78,6 +81,5 @@ public class University {
 		return "University [id=" + id + ", name=" + name + ", position_x=" + position_x + ", position_y=" + position_y
 				+ "]";
 	}
-	
 
 }

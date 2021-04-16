@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * @author racim
+ * Description of a Speciality for the REST webservice
  *
  */
 @XmlRootElement

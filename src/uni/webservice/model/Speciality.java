@@ -6,7 +6,7 @@ package uni.webservice.model;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * @author racim
+ * Description of a Speciality for the SOAP webservice
  *
  */
 public class Speciality {
@@ -69,5 +69,5 @@ public class Speciality {
 	public String toString() {
 		return "Speciality [id=" + id + ", year=" + year + ", field=" + field + ", path=" + path + "]";
 	}
-	
+
 }

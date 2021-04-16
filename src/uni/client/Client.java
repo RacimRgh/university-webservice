@@ -1,5 +1,12 @@
 package uni.client;
 
+/**
+ * @author Righi Racim and Ratovo Maeva
+ * This class is used to test the rest webservice.
+ * It provides a simple console UI that gives multiple choices to the user
+ *
+ */
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -116,8 +123,10 @@ public class Client {
 
 	private static University getAddress(University s) throws IOException, ParserConfigurationException, SAXException {
 		/**
-		 * @param
-		 * @return
+		 * This functions takes a university's name, and retrieves it's full address + it's longitude and latitude
+		 * using the Open Street Map Api and specifically Nominatim
+		 * @param s: The university for which we want to get the address
+		 * @return The updated university, having the correct longitude, latitude and address
 		 */
 		String name = s.getName().replace(" ", "+");
 		// Create a URL object to hold the URL
@@ -152,16 +161,18 @@ public class Client {
 	private static Integer add(String name)
 			throws IOException, ParserConfigurationException, SAXException {
 		/**
-		 * @param
-		 * @return
+		 * This function add a university to the database using POST, and also call the function getAddress
+		 * to retrieve the correct coordinates
+		 * @param name: name of the university to add
+		 * @return null on failure, the added university id on success
 		 */
 		System.out.print("Adding " + name + "... ");
 		WebClient c = WebClient.create(webServiceUrl).path("university");
 		University s = new University(name, 0, 0);
-		s = getAddress(s);
+		s = getAddress(s); // get the full address
 		Response r = c.post(s);
 		if (r.getStatus() == 400) {
-			System.out.println("Oops!");
+			System.out.println("Error!");
 			return null;
 		}
 		String uri = r.getHeaderString("Content-Location");
@@ -171,8 +182,9 @@ public class Client {
 
 	private static University get(Integer id) {
 		/**
-		 * @param
-		 * @return
+		 * Function to get a university by it's id using GET http method
+		 * @param id: Id of the university
+		 * @return The university
 		 */
 		System.out.print("Getting " + id + "... ");
 		WebClient c = WebClient.create(webServiceUrl).path("university/").path(id);
@@ -188,8 +200,8 @@ public class Client {
 
 	private static University[] getAll() {
 		/**
-		 * @param
-		 * @return
+		 * Function to get all the universities on the database
+		 * @return List of universities
 		 */
 		System.out.println("Getting all...");
 		WebClient c = WebClient.create(webServiceUrl).path("university");
@@ -204,8 +216,12 @@ public class Client {
 	private static Integer addSpeciality(int id_u, String year, String field, String path)
 			throws IOException, ParserConfigurationException, SAXException {
 		/**
-		 * @param
-		 * @return
+		 * Function to add a speciality to the database and map it to a university given it's id
+		 * @param id_u: id of the university to map to
+		 * @param year: Level of the speciality (L1,L2,L3,M1,M2)
+		 * @param field: Field like Computer Science, Biology...
+		 * @param path: Path like IA, Data Science, Cellular biology...
+		 * @return null on failure, the speciality id on success
 		 */
 		System.out.print("Adding " + field + "... ");
 		WebClient c = WebClient.create(webServiceUrl).path("university/").path(id_u).path("/speciality");
@@ -222,8 +238,9 @@ public class Client {
 
 	private static Speciality[] getSpecialitiesFromUni(Integer id) {
 		/**
-		 * @param
-		 * @return
+		 * Get all the specialities from a given university
+		 * @param id: Id of the university to get specialities from
+		 * @return List of specialities
 		 */
 		System.out.print("Getting specialities from: " + id + "... ");
 		WebClient c = WebClient.create(webServiceUrl).path("university/").path(id).path("/speciality");
@@ -237,8 +254,8 @@ public class Client {
 
 	public static Speciality[] getAllSpecialities() {
 		/**
-		 * @param
-		 * @return
+		 * Get all specialities from all universities
+		 * @return List of specialities
 		 */
 		System.out.println("Getting all...");
 		WebClient c = WebClient.create(webServiceUrl).path("speciality");

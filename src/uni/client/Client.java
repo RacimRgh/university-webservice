@@ -33,7 +33,8 @@ public class Client {
 			+ "****************************************\n" + "1- Add a university.\n"
 			+ "2- Map a speciality to a university.\n" + "3- Get a university.\n" + "4- Get a speciality.\n"
 			+ "5- Get all universities.\n" + "6- Get all specialities.\n"
-			+ "7- Get all specialities from a given university.\n" + "10- Stop.\n" + "Your choice: ";
+			+ "7- Get all specialities from a given university.\n"
+			+ "8- Get address from a name.\n" + "10- Stop.\n" + "Your choice: ";
 
 	private static final String webServiceUrl = "http://localhost:8080/UniversityManagement/api";
 //  private static final String webServiceUrl = "http://localhost:8080/uni.restwebservice/api/university";
@@ -54,9 +55,10 @@ public class Client {
 //				System.out.println("\n****Name of the university: ");
 //				String name = in.nextLine();
 //				uni = add(name);
-				
+
 				/*********************************************************************************
-				**************************For testing only****************************************/
+				 ************************** For testing only
+				 ****************************************/
 				cergy = add("Universite de Cergy Pontoise");
 				descartes = add("Universite de Paris descartes");
 				lyon = add("universite de Lyon 1");
@@ -68,14 +70,15 @@ public class Client {
 //				int id_u = in.nextInt();
 //				System.out.println("\n****Speciality field: ");
 //				System.out.println();
-//				String field = in.nextLine(); 
+//				String field = in.nextLine();
 //				System.out.println("\n****Speciality year (L1,L2,L3,M1,M2): ");
-//				String year = in.nextLine(); 
+//				String year = in.nextLine();
 //				System.out.println("\n****Speciality path: ");
 //				String path = in.nextLine();
 //				addSpeciality(id_u, year, field, path);
 				/*********************************************************************************
-				**************************For testing only****************************************/
+				 ************************** For testing only
+				 ****************************************/
 				addSpeciality(cergy, "L3", "Informatique", "Informatique");
 				addSpeciality(cergy, "M1", "Informatique", "IA");
 				addSpeciality(descartes, "M1", "Informatique", "Data Science");
@@ -87,8 +90,12 @@ public class Client {
 //				System.out.println("\n****Getting university\n****University ID: ");
 //				int id_u = in.nextInt();
 //				get(id_u);
+				/*********************************************************************************
+				 ************************** For testing only
+				 ****************************************/
 				get(cergy);
 				get(descartes);
+				/*********************************************************************************/
 				break;
 			}
 			case "4": {
@@ -107,6 +114,13 @@ public class Client {
 				break;
 			}
 			case "8": {
+				System.out.println("\n****Name: ");
+				String name = in.nextLine();
+				University s = new University(name, 0, 0);
+				getAddress(s);
+				System.out.println("Full address: " + s.getAddress());
+				System.out.println("Latitude: " + s.getPosition_x());
+				System.out.println("Longitude: " + s.getPosition_y());
 				break;
 			}
 			case "10": {
@@ -123,10 +137,13 @@ public class Client {
 
 	private static University getAddress(University s) throws IOException, ParserConfigurationException, SAXException {
 		/**
-		 * This functions takes a university's name, and retrieves it's full address + it's longitude and latitude
-		 * using the Open Street Map Api and specifically Nominatim
+		 * This functions takes a university's name, and retrieves it's full address +
+		 * it's longitude and latitude using the Open Street Map Api and specifically
+		 * Nominatim
+		 * 
 		 * @param s: The university for which we want to get the address
-		 * @return The updated university, having the correct longitude, latitude and address
+		 * @return The updated university, having the correct longitude, latitude and
+		 *         address
 		 */
 		String name = s.getName().replace(" ", "+");
 		// Create a URL object to hold the URL
@@ -158,11 +175,11 @@ public class Client {
 		return s;
 	}
 
-	private static Integer add(String name)
-			throws IOException, ParserConfigurationException, SAXException {
+	private static Integer add(String name) throws IOException, ParserConfigurationException, SAXException {
 		/**
-		 * This function add a university to the database using POST, and also call the function getAddress
-		 * to retrieve the correct coordinates
+		 * This function add a university to the database using POST, and also call the
+		 * function getAddress to retrieve the correct coordinates
+		 * 
 		 * @param name: name of the university to add
 		 * @return null on failure, the added university id on success
 		 */
@@ -183,6 +200,7 @@ public class Client {
 	private static University get(Integer id) {
 		/**
 		 * Function to get a university by it's id using GET http method
+		 * 
 		 * @param id: Id of the university
 		 * @return The university
 		 */
@@ -201,6 +219,7 @@ public class Client {
 	private static University[] getAll() {
 		/**
 		 * Function to get all the universities on the database
+		 * 
 		 * @return List of universities
 		 */
 		System.out.println("Getting all...");
@@ -216,11 +235,13 @@ public class Client {
 	private static Integer addSpeciality(int id_u, String year, String field, String path)
 			throws IOException, ParserConfigurationException, SAXException {
 		/**
-		 * Function to add a speciality to the database and map it to a university given it's id
-		 * @param id_u: id of the university to map to
-		 * @param year: Level of the speciality (L1,L2,L3,M1,M2)
+		 * Function to add a speciality to the database and map it to a university given
+		 * it's id
+		 * 
+		 * @param id_u:  id of the university to map to
+		 * @param year:  Level of the speciality (L1,L2,L3,M1,M2)
 		 * @param field: Field like Computer Science, Biology...
-		 * @param path: Path like IA, Data Science, Cellular biology...
+		 * @param path:  Path like IA, Data Science, Cellular biology...
 		 * @return null on failure, the speciality id on success
 		 */
 		System.out.print("Adding " + field + "... ");
@@ -239,6 +260,7 @@ public class Client {
 	private static Speciality[] getSpecialitiesFromUni(Integer id) {
 		/**
 		 * Get all the specialities from a given university
+		 * 
 		 * @param id: Id of the university to get specialities from
 		 * @return List of specialities
 		 */
@@ -255,6 +277,7 @@ public class Client {
 	public static Speciality[] getAllSpecialities() {
 		/**
 		 * Get all specialities from all universities
+		 * 
 		 * @return List of specialities
 		 */
 		System.out.println("Getting all...");

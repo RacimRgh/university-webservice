@@ -77,6 +77,7 @@ public class UniversityResource {
 	public Response deleteUniversity(@PathParam("id") int id) {
 		/**
 		 * Function to delete a university by it's id using DELETE http method
+		 * 
 		 * @param id: Id of the university
 		 * @return http request's response
 		 */
@@ -113,6 +114,7 @@ public class UniversityResource {
 	public Response getSpeciality(@PathParam("id") int id) {
 		/**
 		 * Get a speciality given it's id
+		 * 
 		 * @param id: id of the speciality
 		 * @return A speciality
 		 */
